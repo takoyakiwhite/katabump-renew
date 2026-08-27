@@ -30,6 +30,9 @@ jobs:
     - name: Install dependencies
       run: npm ci
 
+    - name: Apply KataBump layout compatibility
+      run: node scripts/apply-katabump-layout-compat.js
+
     - name: Syntax and unit checks
       run: npm run check
 
