@@ -59,6 +59,9 @@ jobs:
         npm ci
         npx playwright install-deps chrome
 
+    - name: Apply KataBump layout compatibility
+      run: node scripts/apply-katabump-layout-compat.js
+
     - name: Restore proxy cooldown cache
       uses: actions/cache/restore@v4
       with:
