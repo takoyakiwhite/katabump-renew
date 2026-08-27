@@ -1,4 +1,5 @@
 const { EXIT_CODE } = require('./lib/config');
+const runtimeHelpers = require('./lib/runtime_helpers');
 const proxyManager = require('./lib/proxy_manager');
 const actionRunner = require('./lib/action_runner');
 const proxySummary = require('./lib/proxy_summary');
@@ -26,5 +27,9 @@ module.exports = {
     ...proxyManager,
     ...actionRunner,
     ...proxySummary,
+    normalizeTimeoutMinutes: runtimeHelpers.normalizeTimeoutMinutes,
+    runChildWithTimeout: runtimeHelpers.runChildWithTimeout,
+    DEFAULT_GRACEFUL_TERMINATION_MS: runtimeHelpers.DEFAULT_GRACEFUL_TERMINATION_MS,
+    EXIT_CODE,
     main,
 };
