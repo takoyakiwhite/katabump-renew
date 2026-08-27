@@ -30,6 +30,9 @@ jobs:
     - name: Install dependencies
       run: npm ci
 
+    - name: Apply KataBump layout compatibility
+      run: node scripts/apply-katabump-layout-compat.js
+
     - name: Syntax and unit checks
       run: npm run check
 
@@ -58,6 +61,12 @@ jobs:
         sudo apt-get install -y xvfb netcat-openbsd
         npm ci
         npx playwright install-deps chrome
+
+    - name: Apply KataBump layout compatibility
+      run: node scripts/apply-katabump-layout-compat.js
+
+    - name: Apply KataBump no-captcha Renew flow
+      run: node scripts/apply-katabump-renew-no-captcha.js
 
     - name: Restore proxy cooldown cache
       uses: actions/cache/restore@v4
