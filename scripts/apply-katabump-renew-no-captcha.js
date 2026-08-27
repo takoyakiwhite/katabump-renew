@@ -4,10 +4,17 @@ const path = require('path');
 const filePath = path.join(__dirname, '..', 'action_renew.js');
 let source = fs.readFileSync(filePath, 'utf8');
 
+// The hardened layout compatibility script now owns the Renew flow.
+// Keep this legacy step idempotent because the workflow still invokes it.
+if (source.includes('async function confirmRenewWithDynamicCloudflare')) {
+    console.log('Legacy no-captcha patch skipped: hardened Renew Cloudflare flow is already installed.');
+    process.exit(0);
+}
+
 const replacements = [
     {
         from: `const hasAltchaInModal = /Protected by ALTCHA/i.test(modalText)\n                        || await modal.locator('altcha-widget, [data-altcha], .altcha').count().catch(() => 0) > 0;`,
-        to: `const hasAltchaInModal = false; // 当前 KataBump Renew 布局无 Cloudflare/ALTCHA 验证` 
+        to: `const hasAltchaInModal = false; // 当前 KataBump Renew 布局无 Cloudflare/ALTCHA 验证`
     },
     {
         from: `// 点击后等待响应\n                    await page.waitForTimeout(2000);`,
@@ -24,4 +31,4 @@ for (const { from, to } of replacements) {
 }
 
 fs.writeFileSync(filePath, source, 'utf8');
-console.log('KataBump Renew no-captcha/10s-wait compatibility applied.');
+console.log('KataBump legacy Renew no-captcha/10s-wait compatibility applied.');
