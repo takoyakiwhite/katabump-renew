@@ -86,10 +86,10 @@ jobs:
           echo "WEBSHARE_PROXY_LIST_URL is empty, running without Webshare proxy."
         fi
 
-    - name: Syntax Check
+    - name: Syntax and unit checks
       run: npm run check
 
-    - name: Run proxy runner (with dynamic proxy coverage)
+    - name: Run proxy runner
       env:
         USERS_JSON: ${{ secrets.USERS_JSON }}
         TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
