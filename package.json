@@ -1,12 +1,12 @@
 {
     "name": "katabump-automation",
     "version": "2.0.0",
-    "description": "Automation script for Katabump renewal",
+    "description": "Reliable KataBump renewal automation",
     "main": "proxy_runner.js",
     "scripts": {
         "start": "node proxy_runner.js",
-        "check": "node --check action_renew.js && node --check proxy_runner.js && node --check lib/runtime_helpers.js && node --check lib/telegram.js && node --check lib/renew_engine.js && node tests/proxy_runner.test.js && node tests/runtime_helpers.test.js && node tests/renew_engine.test.js",
-        "test": "node tests/proxy_runner.test.js && node tests/runtime_helpers.test.js && node tests/renew_engine.test.js"
+        "check": "node --check action_renew.js && node --check proxy_runner.js && node --check lib/config.js && node --check lib/browser.js && node --check lib/captcha.js && node --check lib/katabump_page.js && node --check lib/result.js && node --check lib/renew_engine.js && node --check lib/runtime_helpers.js && node --check lib/telegram.js && npm test",
+        "test": "node tests/proxy_runner.test.js && node tests/runtime_helpers.test.js && node tests/renew_engine.test.js && node tests/katabump_modules.test.js"
     },
     "dependencies": {
         "axios": "^1.13.4",
