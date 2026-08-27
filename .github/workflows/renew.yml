@@ -65,6 +65,9 @@ jobs:
     - name: Apply KataBump layout compatibility
       run: node scripts/apply-katabump-layout-compat.js
 
+    - name: Apply KataBump no-captcha Renew flow
+      run: node scripts/apply-katabump-renew-no-captcha.js
+
     - name: Restore proxy cooldown cache
       uses: actions/cache/restore@v4
       with:
